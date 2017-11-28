@@ -1,12 +1,15 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :update, :create]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create]
   # GET /articles
   # GET /articles.json
   def index
     @articles = Article.where(active: true)
   end
 
+  def search 
+    @articles = Article.search_by_title(params[:search_name])
+  end
   # GET /articles/1
   # GET /articles/1.json
   def show
