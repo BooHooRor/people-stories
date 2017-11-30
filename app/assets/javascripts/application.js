@@ -13,3 +13,10 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+	$('.star_rating').click(function(){
+		var star = $(this);
+		var stars = $(this).attr('data-stars');
+	});
+});

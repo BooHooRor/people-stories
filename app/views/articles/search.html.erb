@@ -1,8 +1,14 @@
 <div class="row search-result">
-	<% @articles.each do |article| %>
-		<div class="col-md-10 col-md-offset-2 well member">
-			<%= link_to article.title, article %>
-			<%= article.description %>
-		</div>
+	<% if @articles.any? %>
+		<% @articles.each do |article| %>
+			<div class="col-md-10 col-md-offset-2 well member">
+				<%= link_to article.title, article %>
+				<%= article.description %>
+			</div>
+		<% end %>
+	<% else %>
+		<h1>No search results </h1>
 	<% end %>
+	<%= link_to "Back", :back %>
+
 </div>

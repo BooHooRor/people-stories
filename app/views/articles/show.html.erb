@@ -26,7 +26,13 @@
 </p>
 
 <p>
-  <strong>Rate:</strong>
+  <strong>Rate this shit mafaka:</strong>
+  <ul class="rating">
+    <% (1..5).each do |i| %>
+      <li class="rating_star" data-stars="<%= i %>" data-article-id="<%= @article.id %>" id="<%= "#{@article.id}_#{i}" %>"></li>
+    <% end %>
+
+  </ul>
   <%= @article.rate %>
 </p>
 
@@ -34,6 +40,8 @@
   <strong>Active:</strong>
   <%= @article.active %>
 </p>
+
+<%= render 'comments/comments' %>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
