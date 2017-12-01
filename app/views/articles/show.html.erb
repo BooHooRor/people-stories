@@ -25,14 +25,13 @@
   <%= @article.user.email %>
 </p>
 
-<p>
-  <strong>Rate this shit mafaka:</strong>
-  <ul class="rating">
-    <% (1..5).each do |i| %>
-      <li class="rating_star" data-stars="<%= i %>" data-article-id="<%= @article.id %>" id="<%= "#{@article.id}_#{i}" %>"></li>
-    <% end %>
+<p>Averate rating</p>
+<div id="star"></div>
 
-  </ul>
+<p>Your rating</p>
+<div id="user_star"></div>
+
+<p>
   <%= @article.rate %>
 </p>
 
