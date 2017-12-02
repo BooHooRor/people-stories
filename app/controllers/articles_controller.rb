@@ -15,6 +15,8 @@ class ArticlesController < ApplicationController
   def show
     @article.views += 1
     @article.save
+
+    @rating = Rating.where(article_id: @article.id, user_id: current_user.id).first if current_user
     @comments = @article.comments.order("created_at DESC")
   end
 

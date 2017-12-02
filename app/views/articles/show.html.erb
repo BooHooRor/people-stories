@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+
+<h1><%= @article.title %></h1>
 
 <p>
   <strong>Description:</strong>
@@ -25,20 +23,55 @@
   <%= @article.user.email %>
 </p>
 
-<p>Averate rating</p>
-<div id="star"></div>
+<p>Average rating:</p>
 
-<p>Your rating</p>
-<div id="user_star"></div>
-
-<p>
-  <%= @article.rate %>
+<p id="average">
+<%= @article.average_rating %>
 </p>
 
 <p>
   <strong>Active:</strong>
   <%= @article.active %>
 </p>
+
+<section class='rating-widget'>
+  <!-- Rating Stars Box -->
+    <div class='rating-stars text-center'>
+      <ul id='stars' class='<%= @article.id %>'> 
+      <% titles = ["Poor", "Fair", "Good", "Excellent", "WOW!!!"] %>
+      <% if @rating %>
+        <% score = @rating.score %>
+          <% 5.times do |s| %>
+            <% if ((s+1)<=score) %>
+              <li class='star selected score_update' title='<%= titles[s] %>' data-value='<%= s+1 %>'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+            <% else %>
+              <li class='star score_update' title='<%= titles[s] %>' data-value='<%= s+1 %>'>
+                <i class='fa fa-star fa-fw'></i>
+              </li>
+            <% end %>
+          <% end %>
+      <% else %>
+        <li class='star score_update' title='Poor' data-value='1'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+        <li class='star score_update' title='Fair' data-value='2'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+        <li class='star score_update' title='Good' data-value='3'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+        <li class='star score_update' title='Excellent' data-value='4'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+        <li class='star score_update' title='WOW!!!' data-value='5'>
+          <i class='fa fa-star fa-fw'></i>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+</section>
 
 <%= render 'comments/comments' %>
 

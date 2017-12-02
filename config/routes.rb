@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ratings/update'
+
   resources :articles do
   	resources :comments
   end
