@@ -47,7 +47,7 @@ $(document).ready(function(){
     for (i = 0; i < onStar; i++) {
       $(stars[i]).addClass('selected');
     }
-
+    //Rating story 
     $.ajax({
       url: '/ratings/update',
       type: 'GET',
@@ -56,12 +56,24 @@ $(document).ready(function(){
       }
     });
   });
-  
+
+//Sorting stories(articles) ajax request
   $(".sort").on('click', function(){
     $.ajax({
       url: '/articles/sort',
       type: 'GET',
       data: {sort_type: $(this).attr('id')},
+      success: function(r){
+      }
+    });
+  });
+
+//Adding story to favourites table
+  $("#favourite").on('click', function(){
+    $.ajax({
+      url: '/articles/favourite',
+      type: 'GET',
+      data: {article_id: $(this).attr('data-value')},
       success: function(r){
       }
     });

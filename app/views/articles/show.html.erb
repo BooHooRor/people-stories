@@ -44,6 +44,15 @@
   <%= @article.active %>
 </p>
 
+<div id="share_or_favourite">
+<div id="share">
+  <p>share on fb/twiter</p>
+</div>
+<div id="favourite" data-value="<%= @article.id %>">
+  <p>SAVE</p>
+</div>
+</div>
+
 <section class='rating-widget'>
   <!-- Rating Stars Box -->
     <div class='rating-stars text-center'>

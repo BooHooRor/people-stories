@@ -85,16 +85,6 @@ class ArticlesController < ApplicationController
   end
 
   def sort 
-
-    # if @stories
-    #   respond_to do |format|
-    #     format.js {render :sort}
-    #   end
-    # else
-    #   respond_to do |format|
-    #       format.html
-    #   end
-    # end
     a = params[:sort_type]
     case a
     when '1' then
@@ -119,6 +109,25 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       format.js 
+    end
+  end
+
+  def favourite
+    if current_user && params[:article_id]
+      fav = Favourite.create(user_id: current_user.id, article_id: params[:article_id])
+      if fav.save
+        respond_to do |format|
+          format.js
+        end
+      else
+        @article = Article.find(params[:article_id])
+
+        respond_to do |format|
+          format.html { redirect_to article_path(@article), notice: 'Something went wrong...' }
+        end
+      end
+    else
+      redirect_to :new_user_session_path
     end
   end
 
