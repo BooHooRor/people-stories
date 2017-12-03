@@ -57,5 +57,13 @@ $(document).ready(function(){
     });
   });
   
-
+  $(".sort").on('click', function(){
+    $.ajax({
+      url: '/articles/sort',
+      type: 'GET',
+      data: {sort_type: $(this).attr('id')},
+      success: function(r){
+      }
+    });
+  })
 });

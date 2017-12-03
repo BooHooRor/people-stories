@@ -3,6 +3,12 @@
 
 <h1><%= @article.title %></h1>
 
+<% if @article.images? %>
+  <% @article.images.each do |image| %>
+    <%= image_tag(image.url, height: "300px") %>
+  <% end %>
+<% end %>
+
 <p>
   <strong>Description:</strong>
   <%= @article.description %>
@@ -26,7 +32,11 @@
 <p>Average rating:</p>
 
 <p id="average">
-<%= @article.average_rating %>
+<% if @article.ratings.any? %>
+<% @article.rate = @article.average_rating %>
+<% @article.save %>
+<%= @article.rate %>
+<% end %>
 </p>
 
 <p>

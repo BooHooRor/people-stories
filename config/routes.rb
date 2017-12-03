@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'ratings/update'
+	get '/articles/sort'
 
   resources :articles do
   	resources :comments

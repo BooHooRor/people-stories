@@ -84,6 +84,44 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def sort 
+
+    # if @stories
+    #   respond_to do |format|
+    #     format.js {render :sort}
+    #   end
+    # else
+    #   respond_to do |format|
+    #       format.html
+    #   end
+    # end
+    a = params[:sort_type]
+    case a
+    when '1' then
+      @stories = Article.order("rate ASC")
+    when '2' then
+      @stories = Article.order("rate DESC")
+    when '3' then
+      @stories = Article.order("views ASC")
+    when '4' then
+      @stories = Article.order("views DESC")
+    when '5' then
+      @stories = Article.order("rate DESC")
+    when '6' then
+      @stories = Article.order("title ASC")
+    when '7' then
+      @stories = Article.order("created_at DESC")
+    else
+      respond_to do |format|
+          format.html
+      end
+    end
+
+    respond_to do |format|
+      format.js 
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
@@ -92,6 +130,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :description, :body, :views, :user_id, :rate, :active)
+      params.require(:article).permit(:title, :description, :body, :views, :user_id, :rate, :active, images: [])
     end
 end

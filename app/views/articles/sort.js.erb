@@ -1,0 +1,16 @@
+$('#articles_container').fadeOut(400, function(){
+    $('#articles_container').html('<% @stories.each do |article| %>\
+    <tr>\
+    <td><%= article.title %></td>\
+    <td><%= article.description %></td>\
+    <td><%= article.body %></td>\
+    <td><%= article.views %></td>\
+    <td><%= article.user.username %></td>\
+    <td><%= article.rate %></td>\
+    <td><%= article.active %></td>\
+    <td><%= link_to 'Show', article %></td>\
+    <td><%= link_to 'Edit', edit_article_path(article) %></td>\
+    <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: "Are you sure?" } %></td>\
+    </tr>\
+<% end %>')});
+$('#articles_container').fadeIn();

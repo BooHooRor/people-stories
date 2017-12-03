@@ -26,6 +26,19 @@
     <%= form.text_area :body, id: :article_body %>
   </div>
 
+  <div class="field">  
+    <label>Images</label>
+
+    <% if @article.images? %>
+      <% @article.images.count.times do |i| %>
+        <%= image_tag(@article.images[i], height: "300px") %>
+        <% i+=1 %>
+      <% end %>
+    <% end %>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+  
+
   <div class="actions">
     <%= form.submit %>
   </div>

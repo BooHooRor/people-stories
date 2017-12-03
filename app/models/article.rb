@@ -3,6 +3,9 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :ratings, dependent: :destroy
 
+  mount_uploaders :images, ImagesUploader
+  serialize :images, JSON
+
   def self.search_by_title(title)
   	names_array = title.split(' ')
 
@@ -15,6 +18,8 @@ class Article < ApplicationRecord
 
   def average_rating
     self.rate = self.ratings.sum(:score) / self.ratings.size
+    self.save!
+    return rate
   end
 end
  #zalozenia: wpisuje imie lub imie i nazwisko w search i to mi znajduje w bazie danych
