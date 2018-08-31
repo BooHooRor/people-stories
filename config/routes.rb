@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'ratings/update'
+  get '/ratings/update'
 	get '/articles/sort'
 	get '/articles/favourite'
 

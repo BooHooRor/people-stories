@@ -113,21 +113,24 @@ class ArticlesController < ApplicationController
   end
 
   def favourite
-    if current_user && params[:article_id]
+    favourites = Favourite.where(user_id: current_user.id, article_id: params[:article_id])
+    @article = Article.find(params[:article_id])
+
+    if current_user && params[:article_id] && !favourites.any?
       fav = Favourite.create(user_id: current_user.id, article_id: params[:article_id])
       if fav.save
         respond_to do |format|
           format.js
         end
       else
-        @article = Article.find(params[:article_id])
-
         respond_to do |format|
           format.html { redirect_to article_path(@article), notice: 'Something went wrong...' }
         end
       end
     else
-      redirect_to :new_user_session_path
+      respond_to do |format|
+        format.html { redirect_to article_path(@article), notice: 'Something went wrong...' }
+      end
     end
   end
 

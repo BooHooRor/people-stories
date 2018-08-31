@@ -1,0 +1,59 @@
+<div id="navigation_bar">
+  <%= link_to :root, id: "logo" do %>
+    <div>
+      <h2>PEOPLE STORIES</h2>
+      <hr class="logo_line" />
+      <h4>get inspired</h4>
+    </div>
+  <% end %>
+  <div id="search">
+    <%= form_tag(search_path, class: "search_form", method: :post, role: "search") do %>
+          <div class="input">
+          <%= text_field_tag :search_name, nil, placeholder: "Serach for inspiration..", autocomplete: "off", class: "search_input" %>
+          </div>
+          <div class="submit_search">
+            <%= button_tag type: 'submit', class: "submit_button" do %>
+              <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+            <% end %>
+          </div>
+    <% end %>
+  </div>
+
+  <div id="sort_types">
+    <div id="sort_box_before">
+      <h2>SORT</h2>
+    </div>
+     <!--  <div id="1" class="sort"><p>RATE</p><i class='fa fa-toggle-off fa-fw'></i></div> -->
+    <div id="sort_box_after">
+      <div class="sort_types_1">
+        <div id="2" class="sort"><p>TOP RATED</p><i class='fa fa-toggle-off'></i></div>
+        <!-- <div id="3" class="sort"><p>VIEWS</p><i class='fa fa-toggle-off'></i></div> -->
+        <div id="4" class="sort"><p>MOST VIEWED</p><i class='fa fa-toggle-off fa-reverse'></i></div>
+      </div>
+      <div class="sort_types_2">
+        <div id="5" class="sort"><p>CATEGORY</p><i class='fa fa-toggle-off'></i></div><!--tu bedzie sie pojawiało okienko z kategoraimi po kliknieciu -->
+        <div id="6" class="sort"><p>A-Z</p><i class='fa fa-toggle-off'></i></div>
+      </div>
+      <div class="sort_types_3">
+        <div id="7" class="sort"><p>NEWEST</p><i class='fa fa-toggle-off'></i></div>
+        <div id="" class="sort"><p>RANDOM</p><i class='fa fa-toggle-off'></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="nav_buttons">
+    <% if current_user %>
+      <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+      <%= link_to 'Edit', edit_user_registration_path %>
+    <% else %>
+      
+      <%= link_to new_user_session_path, class: "log_in" do %>
+        <h3 class="log_in_label">LOG IN</h3>
+        <%= image_tag "/user-circle-o.png", class: "log_in_img" %>
+       <!--  <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> -->
+      <% end %>
+    <% end %>
+  </div>
+
+
+</div>

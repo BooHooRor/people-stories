@@ -6,9 +6,21 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Jockey+One|Open+Sans" rel="stylesheet">
   </head>
 
-  <body>
-    <%= yield %>
+
+  <body class="style-8">
+  	<%= render 'shared/navbar' %>
+  	<div id="main_container" >
+  		<%= yield %>
+  		<div class="right_column">
+  		<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+  			<div class="display_settings">
+  				<i class="fa fa fa-cog" aria-hidden="true"></i>
+  			</div>
+  		</div>
+  	</div>
+  	<%= render 'shared/chatbar' %>
   </body>
 </html>

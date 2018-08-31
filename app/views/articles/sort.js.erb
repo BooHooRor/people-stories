@@ -1,5 +1,5 @@
-$('#articles_container').fadeOut(400, function(){
-    $('#articles_container').html('<% @stories.each do |article| %>\
+$('#stories_container').fadeOut(400, function(){
+    $('#stories_container').html('<% @stories.each do |article| %>\
     <tr>\
     <td><%= article.title %></td>\
     <td><%= article.description %></td>\

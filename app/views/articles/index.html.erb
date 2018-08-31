@@ -1,48 +1,49 @@
-<p id="notice"><%= notice %></p>
-<%= form_tag(search_path, class: "navbar-form navbar-left", role: "search") do %>
-          <div class="form-group">
-          <%= text_field_tag :search_name, nil, placeholder: "Serach for inspiration", class: "form-control" %>
-          </div>
-          <%= submit_tag "Search", class: 'btn btn-default' %>
-<% end %>
-<% if current_user %>
-  <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-  <%= link_to 'Edit', edit_user_registration_path %>
-<% else %>
-  <%= link_to 'Log in', new_user_session_path %>
-<% end %>
 
-<h1>People stories</h1>
-  <ul id="sort_options">
-  <li id="1" class="sort">sortuj po ocenie rosnaco</li>
-  <li id="2" class="sort">sortuj po ocenie malejaco</li>
-  <li id="3" class="sort">sortuj po popularność rosnaco</li>
-  <li id="4" class="sort">sortuj po popularność malejąco</li>
-  <li id="5" class="sort">sortuj po kategoriach</li>
-  <li id="6" class="sort">sortuj alfabetycznie</li>
-  <li id="7" class="sort">sortuj po dacie(najnowsze)</li>
-</ul>
 
-<div id="articles_container">
-<table>
-  <tbody>
+
+<div id="stories_container">
+  <p id="notice"><%= notice %></p>
+      <!-- <div class="story">
+        <p>Elon Musk</p>
+        <p></p>
+        <%= image_tag "/musk.jpg", class: "portrait" %>
+        <p></p>
+        <p>222 | BooHoo</p>
+        <p></p>
+      </div> -->
     <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= article.body %></td>
-        <td><%= article.views %></td>
-        <td><%= article.user.username %></td>
-        <td><%= article.rate %></td>
-        <td><%= article.active %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% a = ["#4717F6", "#C3073F","#D83F87","#A239CA", "#16FFBD", "#14A76C"].sample %>
+      <div class="story">
+        <div class="story_top_bar">
+          <div class="category_triangle" style="border-left: 10px solid <%= a %>; border-top: 10px solid <%= a %>;">
+          </div>
+          <div class="story_title">
+            <p><%= article.title %></p>
+            <hr class="color_line"/>
+          </div>
+          <div class="empty">
+          </div>
+        </div>
+        <div class="story_middle">
+          <p>
+          <%= image_tag "/musk.jpg", class: "portrait" %>
+          </p>
+          <!-- <p>
+          <%= image_tag(article.images[0], class: "portrait") if article.images[0] != nil %>
+            
+          </p> -->
+        </div>
+        <div class="story_bottom_bar">
+          <small><i class="fa fa-eye" aria-hidden="true"></i>   <%= article.views %> | by:  <%= article.user.username %> | <%= article.average_rating if article.ratings.any? %> <i class="fa fa-star" aria-hidden="true"></i></small>
+        </div>
+        <!-- <p><%= article.rate %></p>
+        <p><%= article.active %></p>
+        <p><%= link_to 'Show', article %></p>
+        <p><%= link_to 'Edit', edit_article_path(article) %></p>
+        <p><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></p> -->
+      </div>
     <% end %>
-  </tbody>
-</table>
-</div>
-<br>
+    <br>
 
 <%= link_to 'New Article', new_article_path %>
+</div>
